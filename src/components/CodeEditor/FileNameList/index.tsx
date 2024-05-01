@@ -1,3 +1,7 @@
+import styles from './index.module.scss'
+
 export default function FileNameList() {
-  return <div>FileNameList</div>
+  return (
+    <div className={styles.box}>FileNameList</div>
+  )
 }

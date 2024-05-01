@@ -1,8 +1,10 @@
 .header {
   height: 50px;
   padding: 0 20px;
+  background: #1a1a1a;
+  color: #ffffff;
   box-sizing: border-box;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #383838;
 
   display: flex;
   align-items: center;
@@ -14,7 +16,7 @@
     align-items: center;
 
     img {
-      height: 24px;
+      height: 25px;
       margin-right: 10px;
     }
   }
