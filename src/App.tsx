@@ -1,7 +1,10 @@
+import ReactPlayground from './pages/ReactPlayground'
+import './App.scss'
+
 function App() {
   return (
     <>
-      <h1>React Playground</h1>
+      <ReactPlayground/>
     </>
   )
 }
