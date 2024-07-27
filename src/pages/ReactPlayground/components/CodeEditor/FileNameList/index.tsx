@@ -42,24 +42,26 @@ export default function FileNameList() {
 
   const readonlyFileNames = [ENTRY_FILE_NAME, IMPORT_MAP_FILE_NAME, APP_COMPONENT_FILE_NAME];
 
-  return <div className={styles.tabs}>
-    {
-      tabs.map((item, index, arr) => (
-        <FileNameItem
-          key={item + index}
-          value={item}
-          readonly={readonlyFileNames.includes(item)}
-          creating={creating && index === arr.length - 1}
-          actived={selectedFileName === item}
-          onClick={() => setSelectedFileName(item)}
-          onEditComplete={(name: string) => handleEditComplete(name, item)}
-          onRemove={() => handleRemove(item)}
-        >
-        </FileNameItem>
-      ))
-    }
-    <div className={styles.add} onClick={addTab}>
-      +
+  return (
+    <div className={styles.tabs}>
+      {
+        tabs.map((item, index, arr) => (
+          <FileNameItem
+            key={item + index}
+            value={item}
+            readonly={readonlyFileNames.includes(item)}
+            creating={creating && index === arr.length - 1}
+            actived={selectedFileName === item}
+            onClick={() => setSelectedFileName(item)}
+            onEditComplete={(name: string) => handleEditComplete(name, item)}
+            onRemove={() => handleRemove(item)}
+          >
+          </FileNameItem>
+        ))
+      }
+      <div className={styles.add} onClick={addTab}>
+        +
+      </div>
     </div>
-  </div>
+  )
 }
