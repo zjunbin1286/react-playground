@@ -1,5 +1,5 @@
 import styles from './index.module.scss'
-import logoSvg from '../../../assets/logo.svg';
+import logoSvg from '../../../../assets/logo.svg';
 
 export default function Header() {
   return (
