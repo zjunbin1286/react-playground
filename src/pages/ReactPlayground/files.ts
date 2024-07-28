@@ -9,7 +9,7 @@ import { fileName2Language } from '../../utils'
 // app 文件名
 export const APP_COMPONENT_FILE_NAME = 'App.tsx'
 // esm 模块映射文件名
-export const IMPORT_MAP_FILE_NAME = 'import-map.json'
+export const IMPORT_MAP_FILE_NAME = 'package.json'
 // app 入口文件名
 export const ENTRY_FILE_NAME = 'main.tsx'
 
@@ -19,66 +19,19 @@ export const initFiles: Files = {
     language: fileName2Language(ENTRY_FILE_NAME),
     value: main,
   },
-  [APP_COMPONENT_FILE_NAME]: {
-    name: APP_COMPONENT_FILE_NAME,
-    language: fileName2Language(APP_COMPONENT_FILE_NAME),
-    value: App,
+  [IMPORT_MAP_FILE_NAME]: {
+    name: IMPORT_MAP_FILE_NAME,
+    language: fileName2Language(IMPORT_MAP_FILE_NAME),
+    value: importMap,
   },
   'App.css': {
     name: 'App.css',
     language: 'css',
     value: AppCss,
   },
-  [IMPORT_MAP_FILE_NAME]: {
-    name: IMPORT_MAP_FILE_NAME,
-    language: fileName2Language(IMPORT_MAP_FILE_NAME),
-    value: importMap,
-  },
-  'App1.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },  'App2.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },  'App3.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },  'App4.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },  'App5.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },  'App6.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },  'App7.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },
-
-  'App11.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },'App12.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },'App13.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
-  },'App14.css': {
-    name: 'App.css',
-    language: 'css',
-    value: AppCss,
+  [APP_COMPONENT_FILE_NAME]: {
+    name: APP_COMPONENT_FILE_NAME,
+    language: fileName2Language(APP_COMPONENT_FILE_NAME),
+    value: App,
   },
 }
