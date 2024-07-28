@@ -1,3 +1,5 @@
+import { File, Files } from '../pages/ReactPlayground/PlaygroundContext'
+
 export const fileName2Language = (name: string) => {
   const suffix = name.split('.').pop() || ''
   if (['js', 'jsx'].includes(suffix)) return 'javascript'
@@ -5,4 +7,59 @@ export const fileName2Language = (name: string) => {
   if (['json'].includes(suffix)) return 'json'
   if (['css'].includes(suffix)) return 'css'
   return 'javascript'
+}
+
+/**
+ * 获取模块文件
+ * @param files 
+ * @param modulePath 
+ * @returns 
+ */
+export const getModuleFile = (files: Files, modulePath: string) => {
+  let moduleName = modulePath.split('./').pop() || ''
+  if (!moduleName.includes('.')) {
+    const realModuleName = Object.keys(files).filter(key => {
+      return key.endsWith('.ts')
+        || key.endsWith('.tsx')
+        || key.endsWith('.js')
+        || key.endsWith('.jsx')
+    }).find((key) => {
+      return key.split('.').includes(moduleName)
+    })
+    if (realModuleName) {
+      moduleName = realModuleName
+    }
+  }
+  return files[moduleName]
+}
+
+/**
+ * json to js
+ * @param file 
+ * @returns 
+ */
+export const json2Js = (file: File) => {
+  const js = `export default ${file.value}`
+  return URL.createObjectURL(new Blob([js], { type: 'application/javascript' }))
+}
+
+/**
+ * css to js
+ * @param file 
+ * @returns 
+ */
+export const css2Js = (file: File) => {
+  const randomId = new Date().getTime()
+  const js = `
+    (() => {
+      const stylesheet = document.createElement('style')
+      stylesheet.setAttribute('id', 'style_${randomId}_${file.name}')
+      document.head.appendChild(stylesheet)
+
+      const styles = document.createTextNode(\`${file.value}\`)
+      stylesheet.innerHTML = ''
+      stylesheet.appendChild(styles)
+    })()
+  `
+  return URL.createObjectURL(new Blob([js], { type: 'application/javascript' }))
 }
