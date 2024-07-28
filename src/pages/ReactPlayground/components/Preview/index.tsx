@@ -3,6 +3,7 @@ import { PlaygroundContext } from "../../PlaygroundContext"
 import { compile } from "./compiler";
 import iframeRaw from './iframe.html?raw'
 import { IMPORT_MAP_FILE_NAME } from "../../files";
+import { Message } from "../Message";
 
 export default function Preview() {
   const { files } = useContext(PlaygroundContext)
@@ -33,6 +34,22 @@ export default function Preview() {
     setIframeUrl(getIframeUrl())
   }, [files[IMPORT_MAP_FILE_NAME].value, compiledCode])
 
+  const [error, setError] = useState('')
+
+  const handleMessage = (msg: any) => {
+    const { type, message } = msg.data
+    if (type === 'ERROR') {
+      setError(message)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('message', handleMessage)
+    return () => {
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [])
+
   return (
     <div style={{ height: '100%' }}>
       <iframe
@@ -44,6 +61,7 @@ export default function Preview() {
           border: 'none',
         }}
       />
+      <Message type='error' content={error} />
     </div>
   )
 }

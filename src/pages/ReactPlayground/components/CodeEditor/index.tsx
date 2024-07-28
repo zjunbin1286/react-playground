@@ -10,7 +10,8 @@ export default function CodeEditor() {
     files,
     setFiles,
     selectedFileName,
-    setSelectedFileName
+    setSelectedFileName,
+    theme,
   } = useContext(PlaygroundContext)
 
   const file = files[selectedFileName];
@@ -23,7 +24,11 @@ export default function CodeEditor() {
   return (
     <div className={styles.codeEditor}>
       <FileNameList />
-      <Editor file={file} onChange={debounce(onEditorChange, 1500)} />
+      <Editor
+        file={file}
+        onChange={debounce(onEditorChange, 1500)}
+        options={{ theme: `vs-${theme}` }}
+      />
     </div>
   )
 }

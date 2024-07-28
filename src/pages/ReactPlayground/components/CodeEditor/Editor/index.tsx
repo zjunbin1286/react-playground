@@ -41,6 +41,9 @@ export default function Editor(props: Props) {
     ata(editor.getValue());
   }
 
+  console.log('options--', options);
+  
+
   return (
     <MonacoEditor
       height='100%'
@@ -49,7 +52,7 @@ export default function Editor(props: Props) {
       onMount={handleEditorMount}
       onChange={onChange}
       value={file.value}
-      theme="vs-dark"
+      theme={options?.theme}
       options={
         {
           fontSize: 14,

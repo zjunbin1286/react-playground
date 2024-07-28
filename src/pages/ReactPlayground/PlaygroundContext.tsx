@@ -16,6 +16,8 @@ export type Files = {
   [key: string]: File
 }
 
+export type Theme = 'light' | 'dark'
+
 export type PlaygroundContext = {
   files: Files
   selectedFileName: string
@@ -24,6 +26,8 @@ export type PlaygroundContext = {
   addFile: (fileName: string) => void
   removeFile: (fileName: string) => void
   updateFileName: (oldFieldName: string, newFieldName: string) => void
+  theme: Theme
+  setTheme: (theme: Theme) => void
 }
 
 export const PlaygroundContext = createContext<PlaygroundContext>({
@@ -34,6 +38,7 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
   const { children } = props
   const [files, setFiles] = useState<Files>(initFiles)
   const [selectedFileName, setSelectedFileName] = useState('App.tsx')
+  const [theme, setTheme] = useState<Theme>('dark')
 
   // 新增文件
   const addFile = (name: string) => {
@@ -79,6 +84,8 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
         addFile,
         removeFile,
         updateFileName,
+        theme,
+        setTheme
       }}
     >
       {children}

@@ -1,8 +1,8 @@
 .header {
   height: 50px;
   padding: 0 20px;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--text);
   box-sizing: border-box;
   border-bottom: 1px solid #383838;
 
@@ -19,5 +19,9 @@
       height: 25px;
       margin-right: 10px;
     }
+  }
+
+  .theme {
+    color: var(--text)
   }
 }
