@@ -9,9 +9,9 @@ export type FileNameItemProps = {
   value: string
   /** 激活 */
   actived: boolean
-  /** 是否创建中 */
+  /** 创建中 */
   creating: boolean
-  /** 是否已读 */
+  /** 是否只读（不可被删除和编辑） */
   readonly: boolean
   /** 修改完成事件 */
   onEditComplete: (name: string) => void
@@ -36,6 +36,7 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
   const [editing, setEditing] = useState(creating)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // 双击修改文件名称
   const handleDoubleClick = () => {
     setEditing(true)
     setTimeout(() => {

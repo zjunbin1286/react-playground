@@ -29,6 +29,7 @@ export default function FileNameList() {
   const [creating, setCreating] = useState(false);
 
   const addTab = () => {
+    // 新增时的默认文件名
     const newFileName = 'Comp' + Math.random().toString().slice(2, 8) + '.tsx';
     addFile(newFileName);
     setSelectedFileName(newFileName);
@@ -40,6 +41,7 @@ export default function FileNameList() {
     setSelectedFileName(ENTRY_FILE_NAME)
   }
 
+  // 设置只读文件，不可被编辑和删除
   const readonlyFileNames = [ENTRY_FILE_NAME, IMPORT_MAP_FILE_NAME, APP_COMPONENT_FILE_NAME];
 
   return (

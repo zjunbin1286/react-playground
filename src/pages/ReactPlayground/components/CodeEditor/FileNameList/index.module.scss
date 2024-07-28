@@ -41,14 +41,21 @@
     &:first-child {
       cursor: text;
     }
-
-    input {
-      outline: none;
-    }
   }
 
   .add {
     padding: 0 10px;
     cursor: pointer;
   }
+}
+
+.tabs-item-input {
+  width: 120px;
+  padding: 4px 0 4px 10px;
+  font-size: 13px;
+  color: #444;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
 }

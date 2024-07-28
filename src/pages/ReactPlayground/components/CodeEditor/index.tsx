@@ -23,7 +23,7 @@ export default function CodeEditor() {
   return (
     <div className={styles.codeEditor}>
       <FileNameList />
-      <Editor file={file} onChange={debounce(onEditorChange, 500)} />
+      <Editor file={file} onChange={debounce(onEditorChange, 1500)} />
     </div>
   )
 }
