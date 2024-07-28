@@ -4,13 +4,20 @@ import React, { useState, useRef, useEffect, MouseEventHandler } from 'react'
 import styles from './index.module.scss'
 import { Popconfirm } from 'antd'
 
-export interface FileNameItemProps {
+export type FileNameItemProps = {
+  /** 文件名 */
   value: string
+  /** 激活 */
   actived: boolean
+  /** 是否创建中 */
   creating: boolean
+  /** 是否已读 */
   readonly: boolean
+  /** 修改完成事件 */
   onEditComplete: (name: string) => void
+  /** 移除事件 */
   onRemove: () => void
+  /** 点击事件 */
   onClick: () => void
 }
 
