@@ -88,7 +88,7 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
   // 设置文件信息到location.hash
   useEffect(() => {
     const hash = compress(JSON.stringify(files))
-    window.location.hash = encodeURIComponent(hash)
+    window.location.hash = hash
   }, [files])
 
   return (
