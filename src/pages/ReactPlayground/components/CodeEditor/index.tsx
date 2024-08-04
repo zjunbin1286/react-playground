@@ -26,7 +26,7 @@ export default function CodeEditor() {
       <FileNameList />
       <Editor
         file={file}
-        onChange={debounce(onEditorChange, 1500)}
+        onChange={debounce(onEditorChange, 1000)}
         options={{ theme: `vs-${theme}` }}
       />
     </div>
