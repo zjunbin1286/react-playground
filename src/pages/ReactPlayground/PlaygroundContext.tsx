@@ -1,5 +1,5 @@
-import React, { createContext, PropsWithChildren, useState } from 'react'
-import { fileName2Language } from '../../utils'
+import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
+import { compress, fileName2Language, uncompress } from '../../utils'
 import { initFiles } from './files'
 
 export type File = {
@@ -34,9 +34,20 @@ export const PlaygroundContext = createContext<PlaygroundContext>({
   selectedFileName: 'App.tsx',
 } as PlaygroundContext)
 
+const getFilesFromUrl = () => {
+  let files: Files | undefined
+  try {
+    const hash = uncompress(window.location.hash.slice(1))
+    files = JSON.parse(hash)
+  } catch (error) {
+    console.error(error)
+  }
+  return files
+}
+
 export const PlaygroundProvider = (props: PropsWithChildren) => {
   const { children } = props
-  const [files, setFiles] = useState<Files>(initFiles)
+  const [files, setFiles] = useState<Files>(getFilesFromUrl() || initFiles)
   const [selectedFileName, setSelectedFileName] = useState('App.tsx')
   const [theme, setTheme] = useState<Theme>('dark')
 
@@ -73,6 +84,12 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
     delete files[name]
     setFiles({ ...files })
   }
+
+  // 设置文件信息到location.hash
+  useEffect(() => {
+    const hash = compress(JSON.stringify(files))
+    window.location.hash = encodeURIComponent(hash)
+  }, [files])
 
   return (
     <PlaygroundContext.Provider

@@ -1,3 +1,4 @@
+import { strFromU8, strToU8, unzlibSync, zlibSync } from "fflate"
 import { File, Files } from '../pages/ReactPlayground/PlaygroundContext'
 
 export const fileName2Language = (name: string) => {
@@ -62,4 +63,33 @@ export const css2Js = (file: File) => {
     })()
   `
   return URL.createObjectURL(new Blob([js], { type: 'application/javascript' }))
+}
+
+/**
+ * 压缩代码
+ * 代码内容会压缩后以 asc 码字符串的方式保存在 url 里
+ * 调用 fflate 包的 strToU8 把字符串转为字节数组，然后 zlibSync 压缩，之后 strFromU8 转为字符串。
+ * 最后用 btoa 把这个 base64 编码的字符串转为 asc 码
+ * @param data 
+ * @returns 
+ */
+export function compress(data: string): string {
+  const buffer = strToU8(data)
+  const zipped = zlibSync(buffer, { level: 9 })
+  const str = strFromU8(zipped, true)
+  return btoa(str)
+}
+
+/**
+ * 解压代码
+ * 跟 compress 相反
+ * @param base64 
+ * @returns 
+ */
+export function uncompress(base64: string): string {
+  const binary = atob(base64)
+
+  const buffer = strToU8(binary, true)
+  const unzipped = unzlibSync(buffer)
+  return strFromU8(unzipped)
 }
