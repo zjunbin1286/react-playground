@@ -62,7 +62,7 @@ export default function Preview() {
 
   const [error, setError] = useState('')
 
-  const handleMessage = (msg: any) => {
+  const handleMessage = (msg: MessageData) => {
     const { type, message } = msg.data
     if (type === 'ERROR') {
       setError(message)
