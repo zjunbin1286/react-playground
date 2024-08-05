@@ -30,7 +30,7 @@ export default function FileNameList() {
 
   const addTab = () => {
     // 新增时的默认文件名
-    const newFileName = 'Comp' + Math.random().toString().slice(2, 8) + '.tsx';
+    const newFileName = 'Comp' + Math.random().toString().slice(2, 6) + '.tsx';
     addFile(newFileName);
     setSelectedFileName(newFileName);
     setCreating(true)

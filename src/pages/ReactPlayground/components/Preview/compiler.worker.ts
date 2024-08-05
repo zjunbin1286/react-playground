@@ -88,3 +88,15 @@ export const compile = (files: Files) => {
   const main = files[ENTRY_FILE_NAME]
   return babelTransform(ENTRY_FILE_NAME, main.value, files)
 }
+
+// worker 线程这边则是监听主线程的 message，传递 files 编译后的代码给主线程
+self.addEventListener('message', async ({ data }) => {
+  try {
+    self.postMessage({
+      type: 'COMPILED_CODE',
+      data: compile(data)
+    })
+  } catch (e) {
+    self.postMessage({ type: 'ERROR', error: e })
+  }
+})

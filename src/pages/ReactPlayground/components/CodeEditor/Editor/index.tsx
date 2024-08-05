@@ -41,9 +41,6 @@ export default function Editor(props: Props) {
     ata(editor.getValue());
   }
 
-  console.log('options--', options);
-  
-
   return (
     <MonacoEditor
       height='100%'

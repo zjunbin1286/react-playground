@@ -9,7 +9,7 @@ export function createATA(onDownloadFile: (code: string, path: string) => void) 
     delegate: {
       // 该回调可以拿到下载的代码和路径
       receivedFile: (code, path) => {
-        console.log('自动下载的包', path);
+        // console.log('自动下载的包', path);
         onDownloadFile(code, path);
       }
     },
